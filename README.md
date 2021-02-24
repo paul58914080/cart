@@ -1,4 +1,4 @@
-# Title
+# Cart
 
 <!-- 
 this project was generated with https://github.com/devs-from-matrix/basic-template-repository. 
@@ -8,11 +8,11 @@ this project was generated with https://github.com/devs-from-matrix/basic-templa
 
 ## How to build ?
 
-<!-- mention the steps for building this project -->
+`mvn clean install`
 
 ## How to start ?
 
-<!-- mention the steps for starting or serving this project -->
+`cd bootstrap && mvn spring-boot:run`
 
 ## Contribution guidelines
 
