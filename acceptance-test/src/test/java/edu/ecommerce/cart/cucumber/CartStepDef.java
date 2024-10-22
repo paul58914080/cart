@@ -3,6 +3,11 @@ package edu.ecommerce.cart.cucumber;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.within;
 
+import edu.ecommerce.cart.domain.model.Cart;
+import edu.ecommerce.cart.repository.dao.CartDao;
+import edu.ecommerce.cart.repository.entity.CartEntity;
+import edu.ecommerce.cart.rest.generated.model.CartInfo;
+import edu.ecommerce.cart.rest.generated.model.ProblemDetail;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java8.En;
 import io.cucumber.java8.HookNoArgsBody;
@@ -15,11 +20,6 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import edu.ecommerce.cart.domain.model.Cart;
-import edu.ecommerce.cart.repository.dao.CartDao;
-import edu.ecommerce.cart.repository.entity.CartEntity;
-import edu.ecommerce.cart.rest.generated.model.CartInfo;
-import edu.ecommerce.cart.rest.generated.model.ProblemDetail;
 
 public class CartStepDef implements En {
 
@@ -108,9 +108,7 @@ public class CartStepDef implements En {
                 .isNotEmpty()
                 .extracting("description")
                 .containsAll(
-                    expectedCarts.stream()
-                        .map(Cart::getDescription)
-                        .collect(Collectors.toList()));
+                    expectedCarts.stream().map(Cart::getDescription).collect(Collectors.toList()));
           } else if (body instanceof Cart) {
             assertThat(body)
                 .isNotNull()

@@ -1,9 +1,9 @@
 package edu.ecommerce.cart.domain.port;
 
+import edu.ecommerce.cart.domain.model.Cart;
 import java.util.List;
 import java.util.Optional;
 import lombok.NonNull;
-import edu.ecommerce.cart.domain.model.Cart;
 
 public interface ObtainCart {
 

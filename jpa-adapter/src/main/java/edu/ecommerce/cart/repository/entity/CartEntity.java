@@ -1,5 +1,6 @@
 package edu.ecommerce.cart.repository.entity;
 
+import edu.ecommerce.cart.domain.model.Cart;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -12,7 +13,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.envers.Audited;
-import edu.ecommerce.cart.domain.model.Cart;
 
 @Table(name = "T_CART")
 @Entity

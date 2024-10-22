@@ -3,6 +3,10 @@ package edu.ecommerce.cart;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import edu.ecommerce.cart.domain.CartDomain;
+import edu.ecommerce.cart.domain.exception.CartNotFoundException;
+import edu.ecommerce.cart.domain.model.Cart;
+import edu.ecommerce.cart.domain.port.ObtainCart;
 import java.util.List;
 import java.util.Optional;
 import org.junit.jupiter.api.DisplayName;
@@ -11,10 +15,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-import edu.ecommerce.cart.domain.CartDomain;
-import edu.ecommerce.cart.domain.exception.CartNotFoundException;
-import edu.ecommerce.cart.domain.model.Cart;
-import edu.ecommerce.cart.domain.port.ObtainCart;
 
 @ExtendWith(MockitoExtension.class)
 public class AcceptanceTest {
@@ -66,9 +66,7 @@ public class AcceptanceTest {
     var description =
         "I want to sleep\\r\\nSwat the flies\\r\\nSoftly, please.\\r\\n\\r\\n-- Masaoka Shiki (1867-1902)";
     var expectedCart = Cart.builder().code(code).description(description).build();
-    Mockito.lenient()
-        .when(obtainCart.getCartByCode(code))
-        .thenReturn(Optional.of(expectedCart));
+    Mockito.lenient().when(obtainCart.getCartByCode(code)).thenReturn(Optional.of(expectedCart));
     // When
     var requestCart = new CartDomain(obtainCart);
     var actualCart = requestCart.getCartByCode(code);

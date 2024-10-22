@@ -1,11 +1,11 @@
 package edu.ecommerce.cart.domain;
 
-import java.util.List;
-import lombok.NonNull;
 import edu.ecommerce.cart.domain.exception.CartNotFoundException;
 import edu.ecommerce.cart.domain.model.Cart;
 import edu.ecommerce.cart.domain.port.ObtainCart;
 import edu.ecommerce.cart.domain.port.RequestCart;
+import java.util.List;
+import lombok.NonNull;
 
 public class CartDomain implements RequestCart {
 

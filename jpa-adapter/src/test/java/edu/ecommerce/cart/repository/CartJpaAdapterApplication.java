@@ -1,12 +1,12 @@
 package edu.ecommerce.cart.repository;
 
+import edu.ecommerce.cart.repository.config.JpaAdapterConfig;
 import net.lbruun.springboot.preliquibase.PreLiquibaseAutoConfiguration;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Import;
-import edu.ecommerce.cart.repository.config.JpaAdapterConfig;
 
 @SpringBootApplication
 public class CartJpaAdapterApplication {

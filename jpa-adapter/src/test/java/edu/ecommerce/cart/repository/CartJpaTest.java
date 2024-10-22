@@ -2,6 +2,8 @@ package edu.ecommerce.cart.repository;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import edu.ecommerce.cart.domain.model.Cart;
+import edu.ecommerce.cart.domain.port.ObtainCart;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -10,8 +12,6 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import edu.ecommerce.cart.domain.model.Cart;
-import edu.ecommerce.cart.domain.port.ObtainCart;
 
 @ExtendWith(SpringExtension.class)
 @DataJpaTest
@@ -28,17 +28,13 @@ public class CartJpaTest {
 
   @Sql(scripts = {"/sql/data.sql"})
   @Test
-  @DisplayName(
-      "given carts exist in database when asked should return all carts from database")
+  @DisplayName("given carts exist in database when asked should return all carts from database")
   public void shouldGiveMeCartsWhenAskedGivenCartExistsInDatabase() {
     // Given from @Sql
     // When
     var carts = obtainCart.getAllCarts();
     // Then
-    assertThat(carts)
-        .isNotNull()
-        .extracting("description")
-        .contains("Twinkle twinkle little star");
+    assertThat(carts).isNotNull().extracting("description").contains("Twinkle twinkle little star");
   }
 
   @Test
@@ -52,8 +48,7 @@ public class CartJpaTest {
 
   @Sql(scripts = {"/sql/data.sql"})
   @Test
-  @DisplayName(
-      "given carts exists in database when asked for cart by id should return the cart")
+  @DisplayName("given carts exists in database when asked for cart by id should return the cart")
   public void shouldGiveTheCartWhenAskedByIdGivenThatCartByThatIdExistsInDatabase() {
     // Given from @Sql
     // When
