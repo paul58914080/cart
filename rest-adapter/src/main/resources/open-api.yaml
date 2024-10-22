@@ -1,0 +1,76 @@
+---
+openapi: 3.0.1
+info:
+  title: Cart API Documentation
+  version: v1
+tags:
+  - name: Cart
+    description: Resource to manage cart
+paths:
+  "/api/v1/carts":
+    get:
+      tags:
+        - Cart
+      summary: Get all carts
+      operationId: getCarts
+      responses:
+        '200':
+          description: OK
+          content:
+            "*/*":
+              schema:
+                "$ref": "#/components/schemas/CartInfo"
+  "/api/v1/carts/{code}":
+    get:
+      tags:
+        - Cart
+      summary: Get cart by code
+      operationId: getCartByCode
+      parameters:
+        - name: code
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            "*/*":
+              schema:
+                "$ref": "#/components/schemas/Cart"
+components:
+  schemas:
+    Cart:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int64
+        description:
+          type: string
+    CartInfo:
+      type: object
+      properties:
+        carts:
+          type: array
+          items:
+            "$ref": "#/components/schemas/Cart"
+    ProblemDetail:
+      type: object
+      properties:
+        type:
+          type: string
+        title:
+          type: string
+        status:
+          type: integer
+          format: int32
+        detail:
+          type: string
+        instance:
+          type: string
+        timestamp:
+          type: string
+          format: date-time

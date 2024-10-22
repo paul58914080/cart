@@ -1,0 +1,77 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-table-t_cart
+      author: Paul WILLIAMS
+      changes:
+        - createTable:
+            tableName: T_CART
+            columns:
+              - column:
+                  name: TECH_ID
+                  type: BIGINT
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: CODE
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: DESCRIPTION
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+          createSequence:
+            sequenceName: SEQ_T_CART
+            startValue: 1
+            incrementBy: 1
+      rollback:
+        - dropSequence:
+            sequenceName: SEQ_T_CART
+        - dropTable:
+            tableName: T_CART
+  - changeSet:
+      id: create-table-t_cart_aud
+      author: Paul WILLIAMS
+      changes:
+        - createTable:
+            schemaName: CART_AUDIT
+            tableName: T_CART_AUD
+            columns:
+              - column:
+                  name: TECH_ID
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: CODE
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: DESCRIPTION
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: REV
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: FK_T_CART_AUD_REV
+                    references: CART_AUDIT.REVINFO(REV)
+              - column:
+                  name: REVTYPE
+                  type: INTEGER
+                  constraints:
+                    nullable: false
+        - addPrimaryKey:
+            schemaName: CART_AUDIT
+            tableName: T_CART_AUD
+            columnNames: TECH_ID, REV
+      rollback:
+        - dropTable:
+            schemaName: CART_AUDIT
+            tableName: T_CART_AUD
+            cascadeConstraints: true
